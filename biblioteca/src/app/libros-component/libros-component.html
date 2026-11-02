@@ -1,5 +1,20 @@
-
+<div class="form">
 <h1>Registrar Libros</h1>
+<form (ngSubmit)="agregar()">
+    
+    <label>Titulo:</label>
+    <input type="text" id="titulo" name="titulo" [(ngModel)]="titulo" required>
+    <br>
+    <label>Autor:</label>
+    <input type="text" id="autor" name="autor" [(ngModel)]="autor" required>
+    <br>
+    <button type="submit">Agregar Libro</button>
+
+ </form>
+
+</div>
+
+
 
 <p>Cantidad de libros es: {{libros.length}} </p>
 
@@ -9,14 +24,14 @@
 <table border="3">
     <tr>
         <th>ID</th>
-        <th>Nombre</th>
+        <th>Titulo</th>
         <th>Autor</th>
     </tr>
 
     @for (libro of libros; track libro.id) {
         <tr>
             <td>{{libro.id}}</td>
-            <td>{{libro.nombre}}</td>
+            <td>{{libro.titulo}}</td>
             <td>{{libro.autor}}</td>
         </tr>
     }

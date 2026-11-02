@@ -16,7 +16,7 @@ export class LoginComponent {
   constructor(private router: Router) {}
 
   ingresar(){
-    if(this.usuario === 'admin' && this.contrasena === '1234'){
+    if(this.usuario === 'admin' && this.contrasena === '123'){
       localStorage.setItem('sesionUsuario', 'si');
       this.router.navigate(['/libros']);
     } else {

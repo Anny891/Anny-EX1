@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 
 interface nuevoLibro {
   id: number;
-  nombre: string;
+  titulo: string;
   autor: string;
 }
 
@@ -18,6 +18,33 @@ export class LibrosComponent {
 
   libros: nuevoLibro[] = [];
 
+  titulo = '';
+  autor = '';
+
+  agregar() {
+    if (this.titulo.trim() == '' || this.autor.trim() === '') {
+      alert('Debe completar todos los campos');
+      return;
+    }
+
+    const  nuevoLibro = {
+      id: Math.max(...this.libros.map(libro => libro.id), 0) + 1,
+      titulo: this.titulo,
+      autor: this.autor
+    };
+
+    this.libros.push(nuevoLibro);
+    this.limpiar();
+    this.guardarEnLocalStoreage();
+
+  }  
+  
+  limpiar(){
+    this.titulo = '';
+    this.autor = '';
+  }
+  
+  
   guardarEnLocalStoreage() {
     localStorage.setItem('guardarLibros', JSON.stringify(this.libros));
   }
