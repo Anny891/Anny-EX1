@@ -20,6 +20,7 @@ export class LibrosComponent {
 
   titulo = '';
   autor = '';
+  bajarPosicion = -1;
 
   agregar() {
     if (this.titulo.trim() == '' || this.autor.trim() === '') {
@@ -27,21 +28,36 @@ export class LibrosComponent {
       return;
     }
 
+    if (this.bajarPosicion == -1) {
     const  nuevoLibro = {
       id: Math.max(...this.libros.map(libro => libro.id), 0) + 1,
       titulo: this.titulo,
       autor: this.autor
     };
 
-    this.libros.push(nuevoLibro);
+     this.libros.push(nuevoLibro);
+    } else {
+      this.libros[this.bajarPosicion].titulo = this.titulo;
+      this.libros[this.bajarPosicion].autor = this.autor;
+    }
+
+   
     this.limpiar();
     this.guardarEnLocalStoreage();
+    this.bajarPosicion = -1;
 
   }  
   
   limpiar(){
     this.titulo = '';
     this.autor = '';
+    this.bajarPosicion = -1;
+  }
+
+  editar( i: number) {
+    this.bajarPosicion = i;
+    this.titulo = this.libros[i].titulo;
+    this.autor = this.libros[i].autor;
   }
   
   

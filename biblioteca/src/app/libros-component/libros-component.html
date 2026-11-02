@@ -9,6 +9,9 @@
     <input type="text" id="autor" name="autor" [(ngModel)]="autor" required>
     <br>
     <button type="submit">Agregar Libro</button>
+    @if (bajarPosicion !== -1) {
+        <button type="button" (click)="limpiar()">Cancelar</button>
+    }
 
  </form>
 
@@ -26,13 +29,18 @@
         <th>ID</th>
         <th>Titulo</th>
         <th>Autor</th>
+        <th>Acciones</th>
     </tr>
 
-    @for (libro of libros; track libro.id) {
+    @for (libro of libros; track libro.id; let i = $index) {
         <tr>
             <td>{{libro.id}}</td>
             <td>{{libro.titulo}}</td>
             <td>{{libro.autor}}</td>
+            <td>
+                <button type="button" (click)="editar(i)">Editar</button>
+                
+            </td>
         </tr>
     }
 </table>
