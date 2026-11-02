@@ -59,6 +59,13 @@ export class LibrosComponent {
     this.titulo = this.libros[i].titulo;
     this.autor = this.libros[i].autor;
   }
+
+  eliminar(i: number) {
+    if (confirm('¿Está seguro de eliminar este libro?')) {
+      this.libros.splice(i, 1);
+      this.guardarEnLocalStoreage();
+    }
+  }
   
   
   guardarEnLocalStoreage() {
